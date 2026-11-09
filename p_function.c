@@ -1,3 +1,9 @@
+/*
+ * Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ 4.4 РћР±СЂР°Р±РѕС‚РєР° С‚СЂРµС… РјР°СЃСЃРёРІРѕРІ
+ * Copyright (c) 2026 ankh-331one
+ *
+ * Licensed under the MIT License; see LICENSE file for details.
+ */
 #include <stdio.h>
 #include <malloc.h>
 #include "p_function.h"
@@ -5,11 +11,11 @@
 int input(char a, int min_d, int max_d){
     int n;
     do{
-        printf("\nВведите размер %c: ", a);
+        printf("\nР’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ %c: ", a);
         scanf("%d", &n);
         if (n < min_d || n > max_d){
             printf("\n===============================================================\n");
-            printf("Неверно задан размер %c", a);
+            printf("РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ СЂР°Р·РјРµСЂ %c", a);
             printf("\n===============================================================\n");
         }
     }while (n < min_d || n > max_d);
@@ -25,7 +31,7 @@ void mass_input(FILE* in_file, int n, int* *X){
 }
 
 void mass_print(FILE* out_file, char a, int n, int* X){
-    fprintf(out_file, "\nМассив %c(%d): [%d", a, n, X[0]);
+    fprintf(out_file, "\nРњР°СЃСЃРёРІ %c(%d): [%d", a, n, X[0]);
     for (int i = 1; i < n; i++){
         fprintf(out_file, ", %d", X[i]);
     }
