@@ -1,3 +1,9 @@
+/*
+ * Лабораторная 4.4 Обработка трех массивов
+ * Copyright (c) 2026 ankh-331one
+ *
+ * Licensed under the MIT License; see LICENSE file for details.
+ */
 #ifndef P_FUNCTION.H
 #define P_FUNCTION.H
 #include <stdio.h>
