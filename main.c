@@ -35,19 +35,23 @@ int main()
     fprintf(out_file, "Программа 4.4v24. Сборка: %s %s", __DATE__, __TIME__);
     fprintf(out_file, "\n---------------------------------------------------------------\n");
 
-    FILE* in_file = fopen("input.txt", "r");
-
+    FILE* in_A = fopen("input_A.txt", "r");
     int a = input('A', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* A;
-    mass_input(in_file, a, &A);
+    mass_input(in_A, a, &A);
+    fclose(in_A);
 
+    FILE* in_B = fopen("input_B.txt", "r");
     int b = input('B', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* B;
-    mass_input(in_file, b, &B);
+    mass_input(in_B, b, &B);
+    fclose(in_B);
 
+    FILE* in_C = fopen("input_C.txt", "r");
     int c = input('C', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* C;
-    mass_input(in_file, c, &C);
+    mass_input(in_C, c, &C);
+    fclose(in_C);
 
     int x;
     do{
@@ -59,8 +63,6 @@ int main()
             printf("\n===============================================================\n");
         }
     }while (x == 0);
-
-    fclose(in_file);
 
     mass_print(out_file,'a', a, A);
     mass_print(out_file,'b', b, B);
