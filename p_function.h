@@ -8,9 +8,9 @@
 #define P_FUNCTION.H
 #include <stdio.h>
 
-int input(char a, int min_d, int max_d);
-void mass_input(FILE* in_file, int n, int* *X);
-void mass_print(FILE* out_file, char a, int n, int* X);
-int sum_mass_x(int n, int* X, int a);
+int input(char name, int l_diapaz, int r_diapaz);
+void mass_input(FILE* f_in, int nx, int* *X);
+void mass_print(FILE* f_out, char name, int nx, int* X);
+int sum_mass_x(int nx, int* X, int ne_kr);
 
 #endif // P_FUNCTION.H
