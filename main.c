@@ -35,46 +35,46 @@ int main()
     fprintf(out_file, "Программа 4.4v24. Сборка: %s %s", __DATE__, __TIME__);
     fprintf(out_file, "\n---------------------------------------------------------------\n");
 
-    FILE* in_A = fopen("input_A.txt", "r");
+    FILE* in_A = fopen("in_A.txt", "r");
     int a = input('A', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* A;
     mass_input(in_A, a, &A);
     fclose(in_A);
 
-    FILE* in_B = fopen("input_B.txt", "r");
+    FILE* in_B = fopen("in_B.txt", "r");
     int b = input('B', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* B;
     mass_input(in_B, b, &B);
     fclose(in_B);
 
-    FILE* in_C = fopen("input_C.txt", "r");
+    FILE* in_C = fopen("in_C.txt", "r");
     int c = input('C', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
     int* C;
     mass_input(in_C, c, &C);
     fclose(in_C);
 
-    int x;
+    int ne_krat;
     do{
         printf("\nВведите число X для проверки кратности: ");
-        scanf("%d", &x);
-        if (x == 0){
+        scanf("%d", &ne_krat);
+        if (ne_krat == 0){
             printf("\n===============================================================\n");
-            printf("Число K не может быть равно нулю");
+            printf("Число X не может быть равно нулю");
             printf("\n===============================================================\n");
         }
-    }while (x == 0);
+    }while (ne_krat == 0);
 
-    mass_print(out_file,'a', a, A);
-    mass_print(out_file,'b', b, B);
-    mass_print(out_file,'c', c, C);
-    fprintf(out_file, "\nЧисло X для проверки кратности: %d", x);
+    mass_print(out_file,'A', a, A);
+    mass_print(out_file,'B', b, B);
+    mass_print(out_file,'C', c, C);
+    fprintf(out_file, "\nЧисло X для проверки кратности: %d", ne_krat);
 
     fprintf(out_file, "\n\n---------------------------------------------------------------\n");
 
-    a = sum_mass_x(a, A, x);
-    b = sum_mass_x(b, B, x);
-    c = sum_mass_x(c, C, x);
-    fprintf(out_file, "\nСуммы некратных %d элементов: A - %d, B - %d , C - %d\n", x, a, b, c);
+    a = sum_mass_x(a, A, ne_krat);
+    b = sum_mass_x(b, B, ne_krat);
+    c = sum_mass_x(c, C, ne_krat);
+    fprintf(out_file, "\nСуммы некратных %d элементов: A - %d, B - %d , C - %d\n", ne_krat, a, b, c);
 
     fprintf(out_file, "\n===============================================================\n\n\t\t");
 
@@ -87,7 +87,7 @@ int main()
         fprintf(out_file, "Одинаковая наибольшая сумма в массивах A и C");
     }else if (a == b && a == c){
         if (a == 0){
-            fprintf(out_file, "Во всех векторах нет элементов, некратных %d", x);
+            fprintf(out_file, "Во всех векторах нет элементов, некратных %d", ne_krat);
         }else{
             fprintf(out_file, "Одинаковая наибольшая сумма во всех трёх массивах A, B, C");
         }
@@ -101,9 +101,9 @@ int main()
     fprintf(out_file, "\n\n===============================================================\n\n\n\n\n");
 
     fclose(out_file);
-    free(A);
-    free(B);
-    free(C);
+    free(A), A = NULL;
+    free(B), B = NULL;
+    free(C), C = NULL;
 
     return 0;
 }
