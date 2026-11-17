@@ -17,7 +17,6 @@
     24. Какой из массивов имеет наибольшую сумму элементов, некратных
  заданному числу?
 */
-
 #include <stdio.h>
 #include <locale.h>
 #include <malloc.h>
@@ -32,78 +31,78 @@ int main()
     setlocale(LC_NUMERIC, "C");
 
     FILE* out_file = fopen("output.txt", "a");
-    fprintf(out_file, "Программа 4.5v24. Сборка: %s %s", __DATE__, __TIME__);
+    fprintf(out_file, "Программа 4.4v24. Сборка: %s %s", __DATE__, __TIME__);
     fprintf(out_file, "\n---------------------------------------------------------------\n");
 
-    FILE* in_A = fopen("input_A.txt", "r");
-    int n_a = input('A', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
-    double* A;
-    mass_input(in_A, n_a, &A);
+    FILE* in_A = fopen("in_A.txt", "r");
+    int a = input('A', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
+    int* A;
+    mass_input(in_A, a, &A);
     fclose(in_A);
 
-    FILE* in_B = fopen("input_B.txt", "r");
-    int n_b = input('B', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
-    double* B;
-    mass_input(in_B, n_b, &B);
+    FILE* in_B = fopen("in_B.txt", "r");
+    int b = input('B', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
+    int* B;
+    mass_input(in_B, b, &B);
     fclose(in_B);
 
-    FILE* in_C = fopen("input_C.txt", "r");
-    int n_c = input('C', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
-    double* C;
-    mass_input(in_C, n_c, &C);
+    FILE* in_C = fopen("in_C.txt", "r");
+    int c = input('C', L_DIAPAZON_MASSIV, R_DIAPAZON_MASSIV);
+    int* C;
+    mass_input(in_C, c, &C);
     fclose(in_C);
 
+    int ne_krat;
+    do{
+        printf("\nВведите число X для проверки кратности: ");
+        scanf("%d", &ne_krat);
+        if (ne_krat == 0){
+            printf("\n===============================================================\n");
+            printf("Число X не может быть равно нулю");
+            printf("\n===============================================================\n");
+        }
+    }while (ne_krat == 0);
 
-    mass_print(out_file,'a', n_a, A);
-    mass_print(out_file,'b', n_b, B);
-    mass_print(out_file,'c', n_c, C);
+    mass_print(out_file,'A', a, A);
+    mass_print(out_file,'B', b, B);
+    mass_print(out_file,'C', c, C);
+    fprintf(out_file, "\nЧисло X для проверки кратности: %d", ne_krat);
 
     fprintf(out_file, "\n\n---------------------------------------------------------------\n");
 
-    int a = id_max(n_a, A);
-    int b = id_max(n_b, B);
-    int c = id_max(n_c, C);
-
-    fprintf(out_file, "\nИндексы максимумов: A - %d, B - %d, C - %d\n", a, b, c);
-
+    a = sum_mass_x(a, A, ne_krat);
+    b = sum_mass_x(b, B, ne_krat);
+    c = sum_mass_x(c, C, ne_krat);
+    fprintf(out_file, "\nСуммы некратных %d элементов: A - %d, B - %d , C - %d\n", ne_krat, a, b, c);
 
     fprintf(out_file, "\n===============================================================\n\n\t\t");
 
     fprintf(out_file, "Результат: \n\n");
     if (a > b && a > c){
-        fprintf(out_file, "Наибольший индекс максимума в масссиве A");
-        cr_geomet_poloz(out_file, n_a, A);
+        fprintf(out_file, "Наибольшая сумма некратных элементов в масссиве A");
     }else if (a == b && a > c){
-        fprintf(out_file, "Одинаковый наибольший индекс максимума в массивах A и B");
-        cr_geomet_poloz(out_file, n_a, A);
-        cr_geomet_poloz(out_file, n_b, B);
+        fprintf(out_file, "Одинаковая наибольшая сумма в массивах A и B");
     }else if (a > b && a == c){
-        fprintf(out_file, "Одинаковый наибольший индекс максимума в массивах A и C");
-        cr_geomet_poloz(out_file, n_a, A);
-        cr_geomet_poloz(out_file, n_c, C);
+        fprintf(out_file, "Одинаковая наибольшая сумма в массивах A и C");
     }else if (a == b && a == c){
-        fprintf(out_file, "Одинаковый наибольший индекс максимума во всех трёх массивах A, B, C");
-        cr_geomet_poloz(out_file, n_a, A);
-        cr_geomet_poloz(out_file, n_b, B);
-        cr_geomet_poloz(out_file, n_c, C);
+        if (a == 0){
+            fprintf(out_file, "Во всех векторах нет элементов, некратных %d", ne_krat);
+        }else{
+            fprintf(out_file, "Одинаковая наибольшая сумма во всех трёх массивах A, B, C");
+        }
     }else if (b > c){
-        fprintf(out_file, "Наибольший индекс максимума в масссиве B");
-        cr_geomet_poloz(out_file, n_b, B);
+        fprintf(out_file, "Наибольшая сумма некратных элементов в масссиве B");
     }else if (b == c){
-        fprintf(out_file, "Одинаковый наибольший индекс максимума в массивах B и C");
-        cr_geomet_poloz(out_file, n_b, B);
-        cr_geomet_poloz(out_file, n_c, C);
+        fprintf(out_file, "Одинаковая наибольшая сумма в массивах B и C");
     }else{
-        fprintf(out_file, "Наибольший индекс максимума в масссиве C");
-        cr_geomet_poloz(out_file, n_c, C);
+        fprintf(out_file, "Наибольшая сумма некратных элементов в масссиве C");
     }
-
     fprintf(out_file, "\n\n===============================================================\n\n\n\n\n");
 
     fclose(out_file);
-    free(A);
-    free(B);
-    free(C);
+    free(A), A = NULL;
+    free(B), B = NULL;
+    free(C), C = NULL;
 
     return 0;
 }
