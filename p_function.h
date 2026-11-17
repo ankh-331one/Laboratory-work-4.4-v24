@@ -8,9 +8,14 @@
 #define P_FUNCTION.H
 #include <stdio.h>
 
-int input(char name, int l_diapaz, int r_diapaz);
-void mass_input(FILE* f_in, int nx, int* *X);
-void mass_print(FILE* f_out, char name, int nx, int* X);
-int sum_mass_x(int nx, int* X, int ne_kr);
+int input(char name, int min_d, int max_d);
+
+void mass_input(FILE* in_file, int n, double* *X);
+void mass_print(FILE* out_file, char name, int n, double* X);
+
+int id_max(int n, double* X);
+void cr_geomet_poloz(FILE* out_file, int n, double* X);
+
 
 #endif // P_FUNCTION.H
+
